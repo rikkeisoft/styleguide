@@ -4,13 +4,19 @@ Based on [Google HTML/CSS Style Guide]
 
 ### Quy tắc về style chung
 #### Protocol
-Lược bỏ protocol (`http:`, `https:`) khi nhúng resource.
+Khi nhúng resource từ trang bên ngoài, nếu resource tồn tại với cả 2 protocol `https:` & `http:` thì:
+- Không dùng `http:`. Chỉ dùng `https:`.
+- Có thể lược bỏ protocol (`http:`, `https:`) để trình duyệt tự động detect protocol của resource, tránh được vấn đề về "mixed-content".
+
+*Tham khảo:* [MDN](https://developer.mozilla.org/en-US/docs/Security/MixedContent/How_to_fix_website_with_mixed_content)
 
 ```html
 <!-- Not recommended -->
 <script src="http://www.google.com/js/gweb/analytics/autotrack.js"></script>
 
 <!-- Recommended -->
+<script src="https://www.google.com/js/gweb/analytics/autotrack.js"></script>
+<!-- or -->
 <script src="//www.google.com/js/gweb/analytics/autotrack.js"></script>
 ```
 
@@ -21,6 +27,10 @@ Lược bỏ protocol (`http:`, `https:`) khi nhúng resource.
 }
 
 /* Recommended */
+.example {
+  background: url(https://www.google.com/images/example);
+}
+/* or */
 .example {
   background: url(//www.google.com/images/example);
 }
